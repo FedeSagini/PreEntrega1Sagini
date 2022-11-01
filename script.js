@@ -1,28 +1,25 @@
-// let num1= Number (prompt("Ingrese un numero"))
-// let num2= Number (prompt("Ingrese otro numero"))
-// let resultado = sumar(num1, num2)
-// console.log ("resultado: ", resultado)
-
-// let resultadoFlecha = sumarFlecha(num1, num2)
-// console.log("ResultadoFlecha: ", resultadoFlecha)
+const divisas = [156, 154, 29, 180]
 
 let otroMonto = "no"
 do {
     let datoIngresado = Number(
         prompt(
-            "Si desea convertir dólares a pesos argentinos ingrese 1  Si desea convertir pesos argentinos a dólares ingrese 2"
+            "\n Si desea convertir Pesos a Dolares ingrese 1 \n \Si desea convertir Pesos a Euros ingrese 2 \n \Si desea convertir Pesos a Reales ingrese 3 \n \Si desea convertir Pesos a Libra esterlina ingrese 4"
         )
     );
-    let montoIngresado = Number(prompt("Ingrese el monto que desea convertir"));
+    let montoIngresado = Number(prompt("Ingrese el monto que desea convertir")); 
 
-    function conversorMoneda(dato, monto) {
-        let dolar = 151
+    function conversorMoneda() {
         let resultado = 0
 
-        if (dato == 1) {
-            resultado = monto * dolar
-        } else if (dato == 2) {
-            resultado = monto / dolar
+        if (datoIngresado == 1) {
+            resultado = montoIngresado * divisas [0]
+        } else if (datoIngresado == 2) {
+            resultado = montoIngresado * divisas [1]
+        } else if (datoIngresado == 3) {
+            resultado = montoIngresado * divisas [2]
+        } else if (datoIngresado == 4) {    
+            resultado = montoIngresado * divisas [3]
         } else {
             resultado = "Ingrese una opcion correcta"
         }
@@ -35,3 +32,5 @@ do {
         "Si desea convertir otro valor ingrese si, de otra manera desestime este mensaje"
     );
 } while (otroMonto == "si") 
+
+
