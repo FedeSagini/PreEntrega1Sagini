@@ -1,36 +1,61 @@
-const divisas = [156, 154, 29, 180]
+let productos = [
+  {id: 1, nombre: "Amd ryzen 5 5600g", precio: 17000, imgUrl: "img/ryzen5.jpg" },
+  {id: 2, nombre: "Amd ryzen 7 6500g", precio: 21000, imgUrl: "img/ryzen5.jpg"},
+  {id: 3, nombre: "Amd ryzen 7 4500g", precio: 18000, imgUrl: "img/ryzen5.jpg"}
+]
 
-let otroMonto = "no"
-do {
-    let datoIngresado = Number(
-        prompt(
-            "\n Si desea convertir Pesos a Dolares ingrese 1 \n \Si desea convertir Pesos a Euros ingrese 2 \n \Si desea convertir Pesos a Reales ingrese 3 \n \Si desea convertir Pesos a Libra esterlina ingrese 4"
-        )
-    );
-    let montoIngresado = Number(prompt("Ingrese el monto que desea convertir")); 
+let contenedorProductos = document.getElementById ("contenedorProductos")
+renderizarProductos()
 
-    function conversorMoneda() {
-        let resultado = 0
 
-        if (datoIngresado == 1) {
-            resultado = montoIngresado * divisas [0]
-        } else if (datoIngresado == 2) {
-            resultado = montoIngresado * divisas [1]
-        } else if (datoIngresado == 3) {
-            resultado = montoIngresado * divisas [2]
-        } else if (datoIngresado == 4) {    
-            resultado = montoIngresado * divisas [3]
-        } else {
-            resultado = "Ingrese una opcion correcta"
-        }
-        return resultado.toFixed(2) 
-    }
 
-    let resultado = conversorMoneda(datoIngresado, montoIngresado)
-    alert(resultado + " $"); 
-    otroMonto = prompt(
-        "Si desea convertir otro valor ingrese si, de otra manera desestime este mensaje"
-    );
-} while (otroMonto == "si") 
 
+let = botones = document.getElementsByClassName('boton')
+let = inputBusqueda = document.getElementById('busqueda')
+
+inputBusqueda.oninput = () => {
+  let productosFiltrados = productos.filter(producto => producto.nombre.includes (inputBusqueda.value))
+  renderizarProductos(productosFiltrados)
+}
+
+function renderizarProductos(productosFiltrados) {
+  let productosARenderizar = productos
+  if (productosFiltrados) {
+    productosARenderizar = productosFiltrados
+  }
+  contenedorProductos.innerHTML = ''
+  for (const producto of productosARenderizar) { 
+    let tarjetaProducto = document.createElement('div')
+    tarjetaProducto.className = 'producto'
+    tarjetaProducto.innerHTML = `
+    <h3>${producto.nombre}</h3>
+    <h4>${producto.precio}</h4>
+    <img src=${producto.imgUrl} id="img">
+    <button class="boton" id=${producto.id}>Agregar al carrito</button>
+    `
+  
+    contenedorProductos.append(tarjetaProducto)
+  }
+}
+
+let totalCarrito= ""
+let totalCarritoPrecio= 0
+
+for (const boton of botones) {
+  boton.onclick = (e) => {
+    let productoBuscado = productos.find(producto => producto.id == e.target.id)
+    let sumaCarrito = []
+    
+    sumaCarrito.push(productoBuscado.nombre, ", $" ,productoBuscado.precio, ", ")
+    for(let i of sumaCarrito) totalCarrito+=i;
+    console.log(totalCarrito)
+    
+  
+  let sumaCarritoPrecio = []
+  sumaCarritoPrecio.push(productoBuscado.precio)
+  for(let i of sumaCarritoPrecio) totalCarritoPrecio+=i;
+    console.log("El precio total es de $", totalCarritoPrecio)
+  }
+  
+}
 
