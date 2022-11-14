@@ -29,6 +29,10 @@
     outline:none;
 }
 
+.animate {
+   font-size: 40px;
+}
+
 .botones{
     background-color: #4CAF50; /* Green */
     border: none;

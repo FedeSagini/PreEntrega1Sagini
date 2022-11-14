@@ -50,6 +50,7 @@ if (localStorage.getItem('carrito')) {
 for (const item of carritoGuardado) {
   let productoBuscado = productos.find(producto => producto.id == item.id)
   carritoHtml()
+  
 }
 
 for (const boton of botones) {
@@ -64,7 +65,7 @@ for (const boton of botones) {
     } else {
       carritoGuardado.push({ id: productoBuscado.id, nombre: productoBuscado.nombre, precioUnidad: productoBuscado.precio, unidades: 1, subTotal: productoBuscado.precio })
     }
-
+    
 
     for (let i of carritoGuardado) totalCarrito += i;
     localStorage.setItem('carrito', JSON.stringify(carritoGuardado))
@@ -82,7 +83,8 @@ for (const boton of botones) {
 function carritoHtml() {
   if(Object.keys(carritoGuardado).length === 0){
     carrito.innerHTML = `
-      <div class="itemCarrito">
+      <div class="itemCarrito animate">
+      Gracias por su compra
       </div>
     `
     return
@@ -104,7 +106,6 @@ function carritoHtml() {
           <p>${item.precioUnidad}</p>
           <p>${item.unidades}</p>
           <p>${item.subTotal}</p>
-          <button class='botonEliminar' id='eliminar'><img class='trash' src="./img/trash.png" alt="trash-icon"></button>
       </div>
     `
   
@@ -115,32 +116,37 @@ function carritoHtml() {
           <button class='botones' id='botonComprar'>Comprar</button>
       </div>
     `
- 
-}
+  const btnComprar = document.getElementById('botonComprar')
 
-const btnComprar = document.getElementById('botonComprar')
-btnComprar.addEventListener('click', () => {
+  btnComprar.addEventListener('click', () => {
     carritoGuardado = []
     localStorage.clear()
     carritoHtml()
-})
-
-// const eliminar = document.getElementById('eliminar')
-// eliminar.onclick = () => {
-//     const item = carritoGuardado.find((prod) => prod.id === prodId)
-//     const indice = carritoGuardado.indexOf(item)
-//     carritoGuardado.splice(indice, 1)
-//     location.reload()
-    
-// }
+  })
+  
+ 
+ 
+}
 
 
-// const eliminarDelCarrito = (prodId) => {
-//   const item = carritoGuardado.find((prod) => prod.id === prodId)
-//   const indice = carritoGuardado.indexOf(item)
-//   carritoGuardado.splice(indice, 1)
-//   actualizarCarrito
-// }
+const eliminar = document.getElementById('eliminar')
+
+  eliminar.addEventListener("click", () => {
+    eliminarProducto(productos.id);
+});
+
+const eliminarProducto = (id) => {
+  const foundId = carritoGuardado.find((productos) => productos.id === id);
+
+  console.log(foundId);
+
+  carrito = carritoGuardado.filter((carritoId) => {
+    return carritoId !== foundId;
+  })
+
+  carritoHtml()
+}
+
 
 // const actualizarCarrito = () => {
 //   contenedorCarrito.innerHTML = ""
