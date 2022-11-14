@@ -39,7 +39,6 @@ function renderizarProductos(productosFiltrados) {
   }
 }
 
-
 let totalCarrito = ""
 let totalCarritoPrecio = 0
 let carrito = document.getElementById('carrito')
@@ -64,9 +63,6 @@ for (const boton of botones) {
       carritoGuardado[posicionProductoEnCarrito].subTotal = carritoGuardado[posicionProductoEnCarrito].precioUnidad * carritoGuardado[posicionProductoEnCarrito].unidades
     } else {
       carritoGuardado.push({ id: productoBuscado.id, nombre: productoBuscado.nombre, precioUnidad: productoBuscado.precio, unidades: 1, subTotal: productoBuscado.precio })
-      carrito.innerHTML +=`
-      <button class="boton itemCarrito">Comprar</button>
-      `
     }
 
 
@@ -77,15 +73,20 @@ for (const boton of botones) {
     let carritoGuardadoPrecio = []
     carritoGuardadoPrecio.push(productoBuscado.precio)
     for (let i of carritoGuardadoPrecio) totalCarritoPrecio += i;
-    console.log("El precio total es de $", totalCarritoPrecio)
-
+    
     carritoHtml()
-    actualizarCarrito()
   }
 
 }
 
 function carritoHtml() {
+  if(Object.keys(carritoGuardado).length === 0){
+    carrito.innerHTML = `
+      <div class="itemCarrito">
+      </div>
+    `
+    return
+  }
   carrito.innerHTML = `
       <div class="itemCarrito">
           <p>Nombre</p>
@@ -99,20 +100,38 @@ function carritoHtml() {
     total += item.subTotal
     carrito.innerHTML += `
       <div class="itemCarrito">
-          <p>${item.nombre}</p>
+          <p>${item.nombre}</p> 
           <p>${item.precioUnidad}</p>
           <p>${item.unidades}</p>
           <p>${item.subTotal}</p>
+          <button class='botonEliminar' id='eliminar'><img class='trash' src="./img/trash.png" alt="trash-icon"></button>
       </div>
     `
-
+  
   }
   carrito.innerHTML += `
       <div class="itemCarrito">
           <h3>Total: ${total}</h3>
+          <button class='boton' id='botonComprar'>Comprar</button>
       </div>
     `
+ 
 }
+
+const btnComprar = document.getElementById('botonComprar')
+btnComprar.addEventListener('click', () => { 
+  carritoGuardado = []
+  localStorage.clear()
+  carritoHtml()
+})
+
+const eliminar = document.getElementById('eliminar')
+eliminar.onclick = () => {
+  const item = carritoGuardado.find((prod) => prod.id === prodId)
+  const indice = carritoGuardado.indexOf(item)
+  carritoGuardado.splice(indice, 1)
+}
+
 
 // const eliminarDelCarrito = (prodId) => {
 //   const item = carritoGuardado.find((prod) => prod.id === prodId)
