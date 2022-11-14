@@ -112,25 +112,27 @@ function carritoHtml() {
   carrito.innerHTML += `
       <div class="itemCarrito">
           <h3>Total: ${total}</h3>
-          <button class='boton' id='botonComprar'>Comprar</button>
+          <button class='botones' id='botonComprar'>Comprar</button>
       </div>
     `
  
 }
 
 const btnComprar = document.getElementById('botonComprar')
-btnComprar.addEventListener('click', () => { 
-  carritoGuardado = []
-  localStorage.clear()
-  carritoHtml()
+btnComprar.addEventListener('click', () => {
+    carritoGuardado = []
+    localStorage.clear()
+    carritoHtml()
 })
 
-const eliminar = document.getElementById('eliminar')
-eliminar.onclick = () => {
-  const item = carritoGuardado.find((prod) => prod.id === prodId)
-  const indice = carritoGuardado.indexOf(item)
-  carritoGuardado.splice(indice, 1)
-}
+// const eliminar = document.getElementById('eliminar')
+// eliminar.onclick = () => {
+//     const item = carritoGuardado.find((prod) => prod.id === prodId)
+//     const indice = carritoGuardado.indexOf(item)
+//     carritoGuardado.splice(indice, 1)
+//     location.reload()
+    
+// }
 
 
 // const eliminarDelCarrito = (prodId) => {
