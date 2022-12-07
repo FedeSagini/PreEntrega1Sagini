@@ -1,9 +1,3 @@
-let productos = [
-  { id: 1, nombre: "Amd ryzen 5 5600g", precio: 17000, imgUrl: "img/ryzen5.jpg" },
-  { id: 2, nombre: "Amd ryzen 7 6500g", precio: 21000, imgUrl: "img/ryzen5.jpg" },
-  { id: 3, nombre: "Amd ryzen 7 4500g", precio: 18000, imgUrl: "img/ryzen5.jpg" }
-]
-
 const contenedorCarrito = document.getElementById("carritoContenedor")
 
 let contenedorProductos = document.getElementById("contenedorProductos")
@@ -18,20 +12,25 @@ inputBusqueda.oninput = () => {
   renderizarProductos(productosFiltrados)
 }
 
+fetch('./productos.json')
+  .then(response => response.json())
+  .then(productos => renderizarProductos(productos))
+
 function renderizarProductos(productosFiltrados) {
   let productosARenderizar = productos
   if (productosFiltrados) {
     productosARenderizar = productosFiltrados
   }
   contenedorProductos.innerHTML = ''
-  for (const producto of productosARenderizar) {
+  for (const {nombre , precio, imgUrl, id}  of productosARenderizar) {
+
     let tarjetaProducto = document.createElement('div')
     tarjetaProducto.className = 'producto'
     tarjetaProducto.innerHTML = `
-    <h3>${producto.nombre}</h3>
-    <h4>${producto.precio}</h4>
-    <img src=${producto.imgUrl} id="img">
-    <button class="boton" id=${producto.id}>Agregar al carrito</button>
+    <h3>${nombre}</h3>
+    <h4>${precio}</h4>
+    <img src=${imgUrl} id="img">
+    <button class="boton" id=${id}>Agregar al carrito</button>
     `
 
     contenedorProductos.append(tarjetaProducto)
@@ -66,14 +65,30 @@ for (const boton of botones) {
       carritoGuardado.push({ id: productoBuscado.id, nombre: productoBuscado.nombre, precioUnidad: productoBuscado.precio, unidades: 1, subTotal: productoBuscado.precio })
     }
     
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 1500,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+    
+    Toast.fire({
+      icon: 'success',
+      title: 'Producto agregado al carrito'
+    })
 
-    for (let i of carritoGuardado) totalCarrito += i;
+    for (let i of carritoGuardado) totalCarrito += i
     localStorage.setItem('carrito', JSON.stringify(carritoGuardado))
 
 
     let carritoGuardadoPrecio = []
     carritoGuardadoPrecio.push(productoBuscado.precio)
-    for (let i of carritoGuardadoPrecio) totalCarritoPrecio += i;
+    for (let i of carritoGuardadoPrecio) totalCarritoPrecio += i
     
     carritoHtml()
   }
@@ -132,16 +147,16 @@ function carritoHtml() {
 const eliminar = document.getElementById('eliminar')
 
   eliminar.addEventListener("click", () => {
-    eliminarProducto(productos.id);
-});
+    eliminarProducto(productos.id)
+})
 
 const eliminarProducto = (id) => {
-  const foundId = carritoGuardado.find((productos) => productos.id === id);
+  const foundId = carritoGuardado.find((productos) => productos.id === id)
 
-  console.log(foundId);
+  console.log(foundId)
 
   carrito = carritoGuardado.filter((carritoId) => {
-    return carritoId !== foundId;
+    return carritoId !== foundId
   })
 
   carritoHtml()

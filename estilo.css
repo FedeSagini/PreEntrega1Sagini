@@ -23,6 +23,10 @@
     
 }
 
+.cartImg {
+    max-width: 40px;
+}
+
 .botonEliminar {
     max-width: fit-content;
     border-radius:10px;
