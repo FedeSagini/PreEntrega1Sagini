@@ -1,81 +1,78 @@
 #contenedorProductos {
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 10px;
-    margin-left: 10px;
-    display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  margin-left: 10px;
+  display: flex;
 }
 
 #carrito {
-    width: 1250px;
-    height: 280px;
-    margin: 5px;
-    border: 1px solid black;
+  width: 1250px;
+  height: 280px;
+  margin: 5px;
+  border: 1px solid black;
 }
 
 .itemCarrito {
-    display: flex;
-    justify-content: space-around;
+  display: flex;
+  justify-content: space-around;
 }
 
 .trash {
-    max-width: 40px
-    
+  max-width: 40px;
 }
 
 .cartImg {
-    max-width: 40px;
+  max-width: 40px;
 }
 
 .botonEliminar {
-    max-width: fit-content;
-    border-radius:10px;
-    outline:none;
+  max-width: fit-content;
+  border-radius: 10px;
+  outline: none;
 }
 
 .animate {
-   font-size: 40px;
+  font-size: 40px;
 }
 
-.botones{
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;    
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+.botones {
+  background-color: #4caf50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .botones:active {
-    background-color: #3e8e41;
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
-  }
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
 
 .boton {
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;    
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  background-color: #4caf50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .boton:active {
-    background-color: #3e8e41;
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
-  }
-
-
-#img {
-    width: 300px;
-    height: 300px;
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }
 
+#img {
+  width: 300px;
+  height: 300px;
+}
