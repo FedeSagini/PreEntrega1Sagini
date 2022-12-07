@@ -1,3 +1,7 @@
+const tienda = async () => {
+  const response = await fetch('./productos.json')
+  const productos = await response.json()
+
 const contenedorCarrito = document.getElementById("carritoContenedor")
 
 let contenedorProductos = document.getElementById("contenedorProductos")
@@ -6,15 +10,16 @@ renderizarProductos()
 let botones = document.getElementsByClassName('boton')
 let inputBusqueda = document.getElementById('busqueda')
 
+const myRequest = new Request('./productos.json');
+
+
+   
+
 
 inputBusqueda.oninput = () => {
   let productosFiltrados = productos.filter(producto => producto.nombre.includes(inputBusqueda.value))
   renderizarProductos(productosFiltrados)
 }
-
-fetch('./productos.json')
-  .then(response => response.json())
-  .then(productos => renderizarProductos(productos))
 
 function renderizarProductos(productosFiltrados) {
   let productosARenderizar = productos
@@ -163,19 +168,5 @@ const eliminarProducto = (id) => {
 }
 
 
-// const actualizarCarrito = () => {
-//   contenedorCarrito.innerHTML = ""
-
-//   carritoGuardado.forEach((prod) =>{
-//     const div = document.createElement('div')
-//     div.className = ('productoEnCarrito')
-//     div.innerHTML = `
-//     <p>${prod.nombre}</p>
-//     <p>Precio: ${prod.precio}</p>
-//     <p>Unidades: <span id="cantidad">${prod.unidades}</span></p>
-//     <buttton onclick = "eliminarDelCarrito(${prod.id}) class="boton-eliminar><i class=fas fas-trash-alt"></buttton>"
-//     `
-//     contenedorCarrito.appendChild(div)
-//   })
-
-// }
+}
+tienda()
