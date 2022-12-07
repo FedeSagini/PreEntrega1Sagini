@@ -142,18 +142,18 @@ const tienda = async () => {
       carritoHtml()
     })
 
-    function compra() {
+    function compraRender() {
       btnComprar.onclick = (e) => {
         Swal.fire('Gracias por su compra');
         setTimeout(() => {
           location.reload()
           localStorage.clear()
-        }, 1500)
+        }, 1000)
 
 
       }
     }
-    compra()
+    compraRender()
 
   }
 
