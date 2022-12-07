@@ -2,8 +2,6 @@ const tienda = async () => {
   const response = await fetch('./productos.json')
   const productos = await response.json()
 
-  const carritoBoton = document.getElementById("carritoBoton")
-
   let contenedorProductos = document.getElementById("contenedorProductos")
   renderizarProductos()
 
@@ -94,17 +92,13 @@ const tienda = async () => {
 
   }
 
-
   function carritoHtml() {
     if (Object.keys(carritoGuardado).length === 0) {
       carrito.innerHTML = `
-      <div class="itemCarrito animate">
-      Gracias por su compra
-      </div>
+      " "
     `
       return
     }
-   
     carrito.innerHTML = `
       <div class="itemCarrito">
           <p>Nombre</p>
@@ -129,10 +123,12 @@ const tienda = async () => {
     carrito.innerHTML += `
       <div class="itemCarrito">
           <h3>Total: ${total}</h3>
+          <button class='botones' id='botonVaciar'>Vaciar Carrito</button>
           <button class='botones' id='botonComprar'>Comprar</button>
       </div>
     `
     const btnComprar = document.getElementById('botonComprar')
+    const btnVaciar = document.getElementById('botonVaciar')
 
     btnComprar.addEventListener('click', () => {
       carritoGuardado = []
@@ -140,29 +136,26 @@ const tienda = async () => {
       carritoHtml()
     })
 
-
-
-  }
-
-
-  const eliminar = document.getElementById('eliminar')
-
-  eliminar.addEventListener("click", () => {
-    eliminarProducto(productos.id)
-  })
-
-  const eliminarProducto = (id) => {
-    const foundId = carritoGuardado.find((productos) => productos.id === id)
-
-    console.log(foundId)
-
-    carrito = carritoGuardado.filter((carritoId) => {
-      return carritoId !== foundId
+    btnVaciar.addEventListener('click', () => {
+      carritoGuardado = []
+      localStorage.clear()
+      carritoHtml()
     })
 
-    carritoHtml()
-  }
+    function compra() {
+      btnComprar.onclick = (e) => {
+        Swal.fire('Gracias por su compra');
+        setTimeout(() => {
+          location.reload()
+          localStorage.clear()
+        }, 1500)
 
+
+      }
+    }
+    compra()
+
+  }
 
 }
 tienda()
