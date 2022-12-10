@@ -1,35 +1,36 @@
+* {
+  padding: 0px;
+  margin: 0px;
+
+}
+
 #contenedorProductos {
   align-items: center;
   justify-content: space-between;
   margin-top: 10px;
   margin-left: 10px;
   display: flex;
+  flex-wrap: wrap;
+  flex: 1;
+  min-width: 200px
 }
+
 
 #carrito {
   width: 1250px;
   height: 280px;
   margin: 5px;
   border: 1px solid black;
+  flex-wrap: wrap;
+  flex: 2;
+  min-width: 200px
 }
 
 .itemCarrito {
   display: flex;
   justify-content: space-around;
-}
-
-.trash {
-  max-width: 40px;
-}
-
-.cartImg {
-  max-width: 40px;
-}
-
-.botonEliminar {
-  max-width: fit-content;
-  border-radius: 10px;
-  outline: none;
+  flex-wrap: wrap;
+  min-width: 200px
 }
 
 .animate {
@@ -46,12 +47,14 @@
   display: inline-block;
   font-size: 16px;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  min-width: 200px
 }
 
 .botones:active {
   background-color: #3e8e41;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
+  min-width: 200px
 }
 
 .boton {
@@ -64,6 +67,7 @@
   display: inline-block;
   font-size: 16px;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  min-width: 200px
 }
 
 .boton:active {
@@ -75,4 +79,5 @@
 #img {
   width: 300px;
   height: 300px;
+  min-width: 200px
 }

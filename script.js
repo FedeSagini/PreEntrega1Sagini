@@ -95,7 +95,7 @@ const tienda = async () => {
   function carritoHtml() {
     if (Object.keys(carritoGuardado).length === 0) {
       carrito.innerHTML = `
-      " "
+      
     `
       return
     }

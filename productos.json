@@ -13,8 +13,26 @@
     },
     {
         "id": 3,
-        "nombre": "Amd ryzen 7 4500g",
-        "precio": 18000,
+        "nombre": "Amd ryzen 7 3500g",
+        "precio": 12000,
+        "imgUrl": "img/ryzen5.jpg"
+    },
+    {
+        "id": 4,
+        "nombre": "Amd ryzen 7 7500g",
+        "precio": 29000,
+        "imgUrl": "img/ryzen5.jpg"
+    },
+    {
+        "id": 5,
+        "nombre": "Amd ryzen 7 2500g",
+        "precio": 11000,
+        "imgUrl": "img/ryzen5.jpg"
+    },
+    {
+        "id": 6,
+        "nombre": "Amd ryzen 7 1500g",
+        "precio": 9000,
         "imgUrl": "img/ryzen5.jpg"
     }
 
